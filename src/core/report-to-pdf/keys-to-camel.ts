@@ -20,27 +20,31 @@
  *
  */
 
-import {NgModule} from '@angular/core';
-import {FormsModule} from '@angular/forms';
-import {MatButtonModule} from '@angular/material/button';
-import {MatGridListModule} from '@angular/material/grid-list';
-import {RouterModule} from '@angular/router';
+function isArray(a: any): boolean {
+  return Array.isArray(a);
+}
 
-import {AjfReportsModule} from '@ajf/material/reports';
+function isObject(o: any): boolean {
+  return o === Object(o) && !isArray(o) && typeof o !== 'function';
+}
 
-import {ReportsDemo} from './reports-demo';
+function toCamel(s: string): string {
+  return s.replace(/([-_][a-z])/ig, ($1) => {
+    return $1.toUpperCase()
+      .replace('-', '')
+      .replace('_', '');
+  });
+}
 
-@NgModule({
-  imports: [
-    AjfReportsModule,
-    FormsModule,
-    MatButtonModule,
-    MatGridListModule,
-    RouterModule.forChild([{path: '', component: ReportsDemo}]),
-  ],
-  declarations: [
-    ReportsDemo,
-  ],
-})
-export class ReportsDemoModule {
+export function keysToCamel(o: any): any {
+  if (isObject(o)) {
+    return Object.keys(o).reduce((n: any, k: string) => {
+      n[toCamel(k)] = keysToCamel(o[k]);
+      return n;
+    }, {} as any);
+  } else if (isArray(o)) {
+    return o.map((i: string) => keysToCamel(i));
+  }
+
+  return o;
 }

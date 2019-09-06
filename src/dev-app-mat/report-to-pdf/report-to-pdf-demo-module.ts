@@ -28,7 +28,7 @@ import {RouterModule} from '@angular/router';
 
 import {AjfReportsModule} from '@ajf/material/reports';
 
-import {ReportsDemo} from './reports-demo';
+import {ReportToPdfDemo} from './report-to-pdf-demo';
 
 @NgModule({
   imports: [
@@ -36,11 +36,11 @@ import {ReportsDemo} from './reports-demo';
     FormsModule,
     MatButtonModule,
     MatGridListModule,
-    RouterModule.forChild([{path: '', component: ReportsDemo}]),
+    RouterModule.forChild([{path: '', component: ReportToPdfDemo}]),
   ],
   declarations: [
-    ReportsDemo,
+    ReportToPdfDemo,
   ],
 })
-export class ReportsDemoModule {
+export class ReportToPdfDemoModule {
 }

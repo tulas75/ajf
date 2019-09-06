@@ -47,6 +47,7 @@ export class DevAppLayout {
     {name: 'Node icon', route: '/node-icon'},
     {name: 'Page slider', route: '/page-slider'},
     {name: 'Report builder', route: '/report-builder'},
+    {name: 'Report to PDF', route: '/report-to-pdf'},
     {name: 'Reports', route: '/reports'},
     {name: 'Time', route: '/time'},
     {name: 'Widgets', route: '/widgets'},

@@ -14,6 +14,7 @@ CORE_PACKAGES = [
     "page-break",
     "page-slider",
     "reports",
+    "report-to-pdf",
     "table",
     "text",
     "time",

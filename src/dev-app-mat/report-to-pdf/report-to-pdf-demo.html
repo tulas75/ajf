@@ -1,0 +1,24 @@
+<div class="demo-report-to-pdf">
+  <h4 class="demo-section-header">Report to PDF</h4>
+  <section>
+    <mat-grid-list [cols]="2" rowHeight="300px">
+      <mat-grid-tile>
+        <div class="demo-report-to-pdf-header-box">
+          <h5>Schema</h5>
+          <textarea [(ngModel)]="reportStr"></textarea>
+        </div>
+      </mat-grid-tile>
+      <mat-grid-tile [rowspan]="2">
+        <iframe #preview></iframe>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <div class="demo-reports-header-box">
+          <h5>Context</h5>
+          <textarea [(ngModel)]="context"></textarea>
+        </div>
+      </mat-grid-tile>
+    </mat-grid-list>
+    <button (click)="setReport()" mat-raised-button
+        color="primary">Set report</button>
+  </section>
+</div>

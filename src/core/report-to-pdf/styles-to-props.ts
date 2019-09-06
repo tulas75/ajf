@@ -20,27 +20,11 @@
  *
  */
 
-import {NgModule} from '@angular/core';
-import {FormsModule} from '@angular/forms';
-import {MatButtonModule} from '@angular/material/button';
-import {MatGridListModule} from '@angular/material/grid-list';
-import {RouterModule} from '@angular/router';
+import {AjfStyles} from '@ajf/core/reports';
 
-import {AjfReportsModule} from '@ajf/material/reports';
-
-import {ReportsDemo} from './reports-demo';
-
-@NgModule({
-  imports: [
-    AjfReportsModule,
-    FormsModule,
-    MatButtonModule,
-    MatGridListModule,
-    RouterModule.forChild([{path: '', component: ReportsDemo}]),
-  ],
-  declarations: [
-    ReportsDemo,
-  ],
-})
-export class ReportsDemoModule {
+export function stylesToProps(styles: AjfStyles): {[key: string]: any} {
+  return {
+    color: styles.color,
+    alignment: styles['text-align'] || styles.textAlign,
+  };
 }

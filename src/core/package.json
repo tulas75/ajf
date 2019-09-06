@@ -34,6 +34,7 @@
     "esprima": "^4.0.1",
     "leaflet": "^1.5.1",
     "numeral": "^2.0.6",
+    "pdfmake": "^0.1.58",
     "url-parse": "^1.4.7"
   },
   "dependencies": {

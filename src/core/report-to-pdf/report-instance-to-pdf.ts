@@ -20,27 +20,19 @@
  *
  */
 
-import {NgModule} from '@angular/core';
-import {FormsModule} from '@angular/forms';
-import {MatButtonModule} from '@angular/material/button';
-import {MatGridListModule} from '@angular/material/grid-list';
-import {RouterModule} from '@angular/router';
+import {AjfReportInstance} from '@ajf/core/reports';
+import * as pdfMake from 'pdfmake/build/pdfmake';
 
-import {AjfReportsModule} from '@ajf/material/reports';
+import {keysToCamel} from './keys-to-camel';
+import {reportContainerToPdf} from './report-container-to-pdf';
+import {stylesToProps} from './styles-to-props';
 
-import {ReportsDemo} from './reports-demo';
-
-@NgModule({
-  imports: [
-    AjfReportsModule,
-    FormsModule,
-    MatButtonModule,
-    MatGridListModule,
-    RouterModule.forChild([{path: '', component: ReportsDemo}]),
-  ],
-  declarations: [
-    ReportsDemo,
-  ],
-})
-export class ReportsDemoModule {
+export function reportInstanceToPdf(report: AjfReportInstance): pdfMake.TDocumentDefinitions {
+  return {
+    header: report.header ? () => reportContainerToPdf(report.header!) : undefined,
+    content: report.content ? reportContainerToPdf(report.content) : '',
+    footer: report.footer ? () => reportContainerToPdf(report.footer!) : undefined,
+    styles: keysToCamel(report.styles),
+    ...stylesToProps(report.styles),
+  };
 }

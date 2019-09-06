@@ -1,0 +1,16 @@
+{
+  "extends": "../tsconfig-build",
+  "files": [
+    "public-api.ts",
+    "../pdfmake.d.ts",
+    "../typings.d.ts"
+  ],
+  "angularCompilerOptions": {
+    "annotateForClosureCompiler": true,
+    "strictMetadataEmit": true,
+    "flatModuleOutFile": "index.js",
+    "flatModuleId": "@ajf/core/report-to-pdf",
+    "skipTemplateCodegen": true,
+    "fullTemplateTypeCheck": true
+  }
+}

@@ -20,27 +20,18 @@
  *
  */
 
-import {NgModule} from '@angular/core';
-import {FormsModule} from '@angular/forms';
-import {MatButtonModule} from '@angular/material/button';
-import {MatGridListModule} from '@angular/material/grid-list';
-import {RouterModule} from '@angular/router';
+import {ModuleWithProviders, NgModule} from '@angular/core';
 
-import {AjfReportsModule} from '@ajf/material/reports';
+import {AjfReportToPdf} from './report-to-pdf';
 
-import {ReportsDemo} from './reports-demo';
-
-@NgModule({
-  imports: [
-    AjfReportsModule,
-    FormsModule,
-    MatButtonModule,
-    MatGridListModule,
-    RouterModule.forChild([{path: '', component: ReportsDemo}]),
-  ],
-  declarations: [
-    ReportsDemo,
-  ],
-})
-export class ReportsDemoModule {
+@NgModule({})
+export class AjfReportToPdfModule {
+  static forRoot(): ModuleWithProviders<AjfReportToPdfModule> {
+    return {
+      ngModule: AjfReportToPdfModule,
+      providers: [
+        AjfReportToPdf,
+      ],
+    };
+  }
 }

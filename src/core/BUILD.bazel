@@ -38,3 +38,8 @@ ts_library(
     name = "css-element-queries-typings",
     srcs = [":css-element-queries-typings.d.ts"],
 )
+
+ts_library(
+    name = "pdfmake-typings",
+    srcs = [":pdfmake-typings.d.ts"],
+)

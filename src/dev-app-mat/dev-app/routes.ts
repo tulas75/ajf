@@ -39,6 +39,8 @@ export const DEV_APP_ROUTES: Routes = [
   {path: 'page-slider', loadChildren: 'page-slider/page-slider-demo-module#PageSliderDemoModule'},
   {path: 'report-builder',
     loadChildren: 'report-builder/report-builder-demo-module#ReportBuilderDemoModule'},
+  {path: 'report-to-pdf',
+    loadChildren: 'report-to-pdf/report-to-pdf-demo-module#ReportToPdfDemoModule'},
   {path: 'reports', loadChildren: 'reports/reports-demo-module#ReportsDemoModule'},
   {path: 'time', loadChildren: 'time/time-demo-module#TimeDemoModule'},
   {path: 'widgets', loadChildren: 'widgets/widgets-demo-module#WidgetsDemoModule'},
