@@ -20,18 +20,10 @@
  *
  */
 
-import {AjfReportContainerInstance} from '@ajf/core/reports';
-import * as pdfMake from 'pdfmake/build/pdfmake';
-
-import {keysToCamel} from './keys-to-camel';
-import {reportWidgetToPdf} from './report-widget-to-pdf';
-import {stylesToProps} from './styles-to-props';
-import {wrapIfHasBackground} from './wrap-if-has-background';
-
-export function reportContainerToPdf(container: AjfReportContainerInstance): pdfMake.Content {
-  return wrapIfHasBackground({
-    stack: container.content.map(c => reportWidgetToPdf(c)),
-    styles: keysToCamel(container.styles),
-    ...stylesToProps(container.styles),
-  }, container.styles);
+export function fixDimension(dimension: string|undefined): string|number|undefined {
+  if (dimension == null) { return undefined; }
+  if (dimension.includes('%')) {
+    return dimension;
+  }
+  return parseInt(dimension, 10);
 }

@@ -25,6 +25,7 @@ import {AjfColumnWidgetInstance, AjfFormulaWidgetInstance, AjfLayoutWidgetInstan
 import * as pdfMake from 'pdfmake/build/pdfmake';
 
 import {stylesToProps} from './styles-to-props';
+import {wrapIfHasBackground} from './wrap-if-has-background';
 
 export function reportWidgetToPdf(widget: AjfWidgetInstance): pdfMake.Content {
   let content: pdfMake.Content = {};
@@ -64,17 +65,5 @@ export function reportWidgetToPdf(widget: AjfWidgetInstance): pdfMake.Content {
   if (Object.keys(content).length === 0) {
     content.text = '';
   }
-  content = {...content, ...stylesToProps(widget.styles)};
-  const background = widget.styles['background-color'] || widget.styles.backgroundColor;
-  if (background) {
-    content = {
-      layout: 'noBorders',
-      table: {
-        widths: ['*'],
-        body: [[{...content, fillColor: background}]],
-      },
-    };
-    content.background = background;
-  }
-  return content;
+  return wrapIfHasBackground({...content, ...stylesToProps(widget.styles)}, widget.styles);
 }

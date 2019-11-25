@@ -50,6 +50,18 @@ export class AjfReportToPdf {
     if (pdfDef.header) {
       console.log(pdfDef.header(0, 0, {width: 100, height: 100}));
     }
-    return pdfMake.createPdf(pdfDef);
+    return pdfMake.createPdf(pdfDef, {
+      noBordersNoPadding: {
+        hLineWidth: () => 0,
+        vLineWidth: () => 0,
+        hLineColor: () => 0,
+        vLineColor: () => 0,
+        fillColor: () => 0,
+        paddingLeft: () => 0,
+        paddingRight: () => 0,
+        paddingTop: () => 0,
+        paddingBottom: () => 0,
+      }
+    });
   }
 }

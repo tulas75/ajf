@@ -20,18 +20,30 @@
  *
  */
 
-import {AjfReportContainerInstance} from '@ajf/core/reports';
+import {AjfStyles} from '@ajf/core/reports';
 import * as pdfMake from 'pdfmake/build/pdfmake';
 
-import {keysToCamel} from './keys-to-camel';
-import {reportWidgetToPdf} from './report-widget-to-pdf';
-import {stylesToProps} from './styles-to-props';
-import {wrapIfHasBackground} from './wrap-if-has-background';
+import {fixDimension} from './fix-dimension';
 
-export function reportContainerToPdf(container: AjfReportContainerInstance): pdfMake.Content {
-  return wrapIfHasBackground({
-    stack: container.content.map(c => reportWidgetToPdf(c)),
-    styles: keysToCamel(container.styles),
-    ...stylesToProps(container.styles),
-  }, container.styles);
+export function wrapIfHasBackground(content: pdfMake.Content, styles: AjfStyles): pdfMake.Content {
+  const background = styles['background-color'] || styles.backgroundColor;
+  if (background) {
+    const borderRadius = fixDimension(styles['border-radius'] || styles.borderRadius);
+    const body: pdfMake.Content[][] = [[{
+      ...content,
+      margin: [0, 0, 0, 0],
+      fillColor: background,
+      fillRadius: borderRadius
+    }]];
+    const heights: (string|number)[] = [fixDimension(styles.height) || 'auto'];
+    content = {
+      layout: 'noBordersNoPadding',
+      table: {
+        widths: [fixDimension(styles.width) || '*'],
+        heights,
+        body,
+      },
+    };
+  }
+  return content;
 }
